@@ -99,3 +99,32 @@ graph LR
     I -->|"S3"| L
 ```
 
+## Примерная структура репы
+
+```
+goodprice-tender-platform/
+│
+├── api-gateway/
+|
+├── frontend/
+|
+├── auth-service/
+├── users-service/
+├── order-service/
+├── orderitems-service/
+├── items-service/
+├── pricing-service/
+├── participant-service/
+├── bidding-service/
+├── excel-service/
+├── files-service/
+├── personal-orders-service/
+├── notification-service/
+├── analytics-service/
+├── shared-go/                   #Возможно не будет
+├── shared-python/
+|
+├── infra/                     
+├── docs/
+└── devtools/
+```
