@@ -18,7 +18,7 @@
 - **ClickHouse** — используется для хранения и анализа истории изменения цен.  
 - **Redis** — кеширование и ускорение операций.  
 
-Каждый сервис имеет классические REST-эндпоинты и, при необходимости, может взаимодействовать с другими сервисами через **gRPC** или **RabbitMQ** в зависимости от задачи.
+Каждый сервис имеет классические REST-эндпоинты и, при необходимости, может взаимодействовать с другими сервисами через **gRPC**, **RabbitMQ** или **Kafka** в зависимости от задачи.
 
 - **S3-хранилище** — загрузка и хранение Excel-файлов.
 
@@ -41,33 +41,25 @@ graph LR
         B["API Gateway"]
 
         C["Auth Service (ORY)"]
-        U["Users Service"]
-        D["Order Service"]
-        E["Pricing Service"]
-        F["Participant Service"]
-        G["Bidding Service"]
-        H["Excel Service"]
-        I["Files Service"]
-        J["PersonalOrder Service"]
-        K["Notification Service"]
-        Z["Analytics Service"]
-        X["Items Service"]
-        Y["OrderItems Service"]
+        D["Users Service"]
+        E["Tender Service"]
+        F["Bidding Service"]
+        G["Excel Service"]
+        H["Files Service"]
+        I["PersonalOrder Service"]
+        J["Notification Service"]
+        K["Analytics Service"]
 
         %% Связи от Gateway
         B -->|"Auth / JWT"| C
-        B -->|"Users"| U
-        B -->|"Orders"| D
-        B -->|"Order items"| Y
-        B -->|"Items"| X
-        B -->|"Prices"| E
-        B -->|"Participants"| F
-        B -->|"Bidding"| G
-        B -->|"Excel Upload / Download"| H
-        B -->|"Files (Presigned URLs)"| I
-        B -->|"Pers. orders"| J
-        B -->|"Notifications / Webhooks"| K
-        B -->|"Analytics"| Z
+        B -->|"Users"| D
+        B -->|"Tenders"| E
+        B -->|"Bidding"| F
+        B -->|"Excel Upload / Download"| G
+        B -->|"Files (Presigned URLs)"| H
+        B -->|"Pers. orders"| I
+        B -->|"Notifications / Webhooks"| J
+        B -->|"Analytics"| K
     end
 
     %% Генеральные входы
@@ -84,7 +76,7 @@ graph LR
     end
 
     %% Связи с PostgreSQL
-    U -->|"PostgreSQL"| M
+    C -->|"PostgreSQL"| M
     D -->|"PostgreSQL"| M
     E -->|"PostgreSQL"| M
     F -->|"PostgreSQL"| M
@@ -92,11 +84,9 @@ graph LR
     I -->|"PostgreSQL"| M
     J -->|"PostgreSQL"| M
     K -->|"PostgreSQL"| M
-    X -->|"PostgreSQL"| M
-    Y -->|"PostgreSQL"| M 
 
     %% S3
-    I -->|"S3"| L
+    H -->|"S3"| L
 ```
 
 ## Примерная структура репы
