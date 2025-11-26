@@ -37,7 +37,7 @@ graph LR
 
     %% ========= ЗОНА 2: ПРИЛОЖЕНИЯ (бизнес-логика) =========
     subgraph APP_ZONE["Application Zone (микросервисы)"]
-        A["Frontend (React)"]
+        A["Web client (React)"]
         B["API Gateway"]
 
         C["Auth Service (ORY)"]
@@ -102,25 +102,20 @@ goodprice-tender-platform/
 │
 ├── api-gateway/
 |
-├── frontend/
+├── web-client/
 |
-├── auth-service/
-├── users-service/
-├── order-service/
-├── orderitems-service/
-├── items-service/
-├── pricing-service/
-├── participant-service/
+├── users-service/               # Возможно не будет
+├── tender-service/
 ├── bidding-service/
 ├── excel-service/
 ├── files-service/
 ├── personal-orders-service/
 ├── notification-service/
 ├── analytics-service/
-├── shared-go/                   #Возможно не будет
+├── shared-go/                   # Возможно не будет
 ├── shared-python/
 |
 ├── infra/                     
 ├── docs/
-└── devtools/
+└── devtools/                    # Возможно не будет
 ```
