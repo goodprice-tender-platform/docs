@@ -32,7 +32,7 @@
 graph LR
     %% ========= ЗОНА 1: ФРОНТ И ПУБЛИЧНЫЙ ДОСТУП =========
     subgraph PUBLIC_ZONE["Public Zone (доступно фронтенду)"]
-        A1["Load balancer"]
+        A1["HaProxy"]
     end
 
     %% ========= ЗОНА 2: ПРИЛОЖЕНИЯ (бизнес-логика) =========
@@ -71,6 +71,8 @@ graph LR
         M["PostgreSQL (per service)"]
         N["Redis (Cache / Sessions)"]
         L["MinIO (S3 Storage)"]
+        X["Redis"]
+        W["Kafka"]
         Q["RabbitMQ"]
         T["Prometheus + Grafana"]
     end
@@ -84,6 +86,10 @@ graph LR
     I -->|"PostgreSQL"| M
     J -->|"PostgreSQL"| M
     K -->|"PostgreSQL"| M
+
+
+    E -->|"Kafka"|W
+    F -->|"Kafka"|W
 
     %% S3
     H -->|"S3"| L
